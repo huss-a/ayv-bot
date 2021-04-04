@@ -3,6 +3,7 @@ const client = new Discord.Client();
 import dotenv from "dotenv";
 dotenv.config();
 import { fnf, postFnf } from "./functions/fnf";
+import help from "./functions/help";
 import {
   website,
   thread,
@@ -31,7 +32,7 @@ client.on("message", (message) => {
     rotw(message);
   }
   if (content.startsWith("@post-rotw")) {
-    postRotw(message)
+    postRotw(message);
   }
 
   if (content.startsWith("@fnf")) {
@@ -57,6 +58,10 @@ client.on("message", (message) => {
   }
   if (content.startsWith("@thread")) {
     thread(message);
+  }
+
+  if (content.startsWith("@help")) {
+    help(message);
   }
 });
 

@@ -1,7 +1,7 @@
 import Discord from 'discord.js';
 import rotwData from "../data/rotw"
 
-interface Fields extends Object {
+export interface Fields extends Object {
   name: string;
   value: string;
   inline: boolean;
