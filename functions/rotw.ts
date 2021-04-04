@@ -1,11 +1,12 @@
-let Discord = require("discord.js");
-const rotwData = require("../data/rotw");
+import Discord from 'discord.js';
+import rotwData from "../data/rotw"
 
 interface Fields extends Object {
-    name: string;
-    value: string;
-    inline: boolean;
+  name: string;
+  value: string;
+  inline: boolean;
 }
+
 
 const rotwFields: Array<Fields> = [
   {
@@ -25,7 +26,7 @@ const rotwFields: Array<Fields> = [
   },
   {
     name: "Thusday",
-    value: rotwData.thusday,
+    value: rotwData.thursday,
     inline: true,
   },
   {
@@ -45,7 +46,7 @@ const rotwFields: Array<Fields> = [
   },
 ];
 
-function rotw(message): void {
+export function rotw(message): void {
   const embed = new Discord.MessageEmbed()
     .setTitle(rotwData.title)
     .addFields(rotwFields)
@@ -56,7 +57,7 @@ function rotw(message): void {
   message.reply("Sent you a DM! :e_mail:");
 }
 
-function postRotw(message): void {
+export function postRotw(message): void {
   if (!message.member.hasPermission("MANAGE_MESSAGES"))
     return message.reply("Only staff members can do that!");
   const embed = new Discord.MessageEmbed()
@@ -69,7 +70,3 @@ function postRotw(message): void {
   message.channel.send("<@&789510308455907419>");
   message.delete();
 }
-
-export {};
-
-module.exports = { rotw, postRotw };

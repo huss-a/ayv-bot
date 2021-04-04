@@ -1,6 +1,6 @@
-let Discord = require("discord.js");
+import Discord from "discord.js";
 
-function ping(client, message): void {
+export default function ping(client, message): void {
   const embed = new Discord.MessageEmbed()
     .setTitle("Pong! 🏓")
     .setDescription(`**Client Latency**: ${client.ws.ping}ms`)
@@ -8,7 +8,3 @@ function ping(client, message): void {
 
   message.channel.send(embed);
 }
-
-module.exports = ping;
-
-export {}

@@ -1,37 +1,46 @@
-var Discord = require("discord.js");
-var client = new Discord.Client();
-var MessageEmbed = Discord.MessageEmbed;
+"use strict";
+let Discord = require("discord.js");
+const client = new Discord.Client();
+const { MessageEmbed } = Discord;
 require("dotenv").config();
-var PRIMARY_BLUE = "#0b1560";
-var TOKEN = process.env.TOKEN;
-client.on("ready", function () {
+const PRIMARY_BLUE = "#0b1560";
+const { TOKEN } = process.env;
+client.on("ready", () => {
     console.log("Bot is up!");
 });
-client.on("message", function (message) {
-    var content = message.content, channel = message.channel;
+client.on("message", (message) => {
+    let { content, channel } = message;
     content = content.toLowerCase();
     if (content.startsWith("@ping")) {
-        var ping = require("./functions/ping");
+        const ping = require("./functions/ping");
         ping(client, message);
     }
     if (content.startsWith("@rotw")) {
-        var rotw_1 = require("./functions/rotw");
-        rotw_1.rotw(message);
+        require("./functions/rotw").rotw(message);
     }
     if (content.startsWith("@post-rotw")) {
-        var rotw_2 = require("./functions/rotw");
-        rotw_2.postRotw(message);
+        const rotw = require("./functions/rotw");
+        rotw.postRotw(message);
     }
     if (content.startsWith("@fnf")) {
-        var fnf_1 = require("./functions/fnf");
-        fnf_1.fnf(message);
+        const fnf = require("./functions/fnf");
+        fnf.fnf(message);
     }
     if (content.startsWith("@post-fnf")) {
-        var fnf_2 = require("./functions/fnf");
-        fnf_2.postFnf(message);
+        const fnf = require("./functions/fnf");
+        fnf.postFnf(message);
     }
     if (content.startsWith("@pirep")) {
         require("./functions/misc").pirep(message);
+    }
+    if (content.startsWith("@website") || content.startsWith("@web")) {
+        require("./functions/misc").website(message);
+    }
+    if (content.startsWith("@instagram") || content.startsWith("@ig")) {
+        require("./functions/misc").instagram(message);
+    }
+    if (content.startsWith("@crewcenter") || content.startsWith("@cc")) {
+        require("./functions/misc").crewCenter(message);
     }
 });
 client.login(TOKEN);

@@ -61,4 +61,4 @@ Fly any route in our database, but you MUST takeoff or land at an active airport
     `,
 };
 
-module.exports = rotw;
+export default rotw;

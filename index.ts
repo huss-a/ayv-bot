@@ -1,8 +1,16 @@
-let Discord = require("discord.js");
+import Discord from "discord.js";
 const client = new Discord.Client();
-const { MessageEmbed } = Discord;
-require("dotenv").config();
-const PRIMARY_BLUE = "#0b1560";
+import dotenv from "dotenv";
+dotenv.config();
+import { fnf, postFnf } from "./functions/fnf";
+import {
+  website,
+  thread,
+  crewCenter,
+  instagram,
+  pirep,
+} from "./functions/misc";
+import { postRotw, rotw } from "./functions/rotw";
 
 const { TOKEN } = process.env;
 
@@ -11,11 +19,7 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
-  interface Message {
-    content: string;
-    channel: any;
-  }
-  let { content, channel }: Message = message;
+  let { content, channel } = message;
   content = content.toLowerCase();
 
   if (content.startsWith("@ping")) {
@@ -24,26 +28,35 @@ client.on("message", (message) => {
   }
 
   if (content.startsWith("@rotw")) {
-    const rotw = require("./functions/rotw");
-    rotw.rotw(message);
+    rotw(message);
   }
   if (content.startsWith("@post-rotw")) {
-    const rotw = require("./functions/rotw");
-    rotw.postRotw(message);
+    postRotw(message)
   }
 
   if (content.startsWith("@fnf")) {
-    const fnf = require("./functions/fnf");
-    fnf.fnf(message);
+    fnf(message);
   }
 
   if (content.startsWith("@post-fnf")) {
-    const fnf = require("./functions/fnf");
-    fnf.postFnf(message);
+    postFnf(message);
   }
 
   if (content.startsWith("@pirep")) {
-    require("./functions/misc").pirep(message);
+    pirep(message);
+  }
+
+  if (content.startsWith("@website") || content.startsWith("@web")) {
+    website(message);
+  }
+  if (content.startsWith("@instagram") || content.startsWith("@ig")) {
+    instagram(message);
+  }
+  if (content.startsWith("@crewcenter") || content.startsWith("@cc")) {
+    crewCenter(message);
+  }
+  if (content.startsWith("@thread")) {
+    thread(message);
   }
 });
 

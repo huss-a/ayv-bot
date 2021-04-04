@@ -1,10 +1,10 @@
 "use strict";
-exports.__esModule = true;
-var Discord = require("discord.js");
+Object.defineProperty(exports, "__esModule", { value: true });
+let Discord = require("discord.js");
 function ping(client, message) {
-    var embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
         .setTitle("Pong! 🏓")
-        .setDescription("**Client Latency**: " + client.ws.ping + "ms")
+        .setDescription(`**Client Latency**: ${client.ws.ping}ms`)
         .setColor("#0b1560");
     message.channel.send(embed);
 }

@@ -1,9 +1,9 @@
 "use strict";
-exports.__esModule = true;
-var Discord = require("discord.js");
-var fnfData = require("../data/fnf");
+Object.defineProperty(exports, "__esModule", { value: true });
+let Discord = require("discord.js");
+const fnfData = require("../data/fnf");
 function fnf(message) {
-    var embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
         .setTitle(fnfData.title)
         .setDescription(fnfData.value)
         .setFooter("Have an awesome Friday!")
@@ -14,13 +14,13 @@ function fnf(message) {
 function postFnf(message) {
     if (!message.member.hasPermission("MANAGE_MESSAGES"))
         return message.reply("Only staff members can do that!");
-    var embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
         .setTitle(fnfData.title)
         .setDescription(fnfData.value)
         .setFooter("Have an awesome Friday!")
         .setColor("#0b1560");
     message.channel.send(embed);
     message.channel.send("<@&789510308455907419>");
-    message["delete"]();
+    message.delete();
 }
-module.exports = { fnf: fnf, postFnf: postFnf };
+module.exports = { fnf, postFnf };

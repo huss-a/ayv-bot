@@ -1,7 +1,7 @@
-let Discord = require("discord.js");
+import Discord from 'discord.js';
 const fnfData = require("../data/fnf");
 
-function fnf(message): void {
+export function fnf(message): void {
   const embed = new Discord.MessageEmbed()
     .setTitle(fnfData.title)
     .setDescription(fnfData.value)
@@ -11,7 +11,7 @@ function fnf(message): void {
   message.reply("Sent you a DM! :e_mail:");
 }
 
-function postFnf(message): void {
+export function postFnf(message): void {
   if (!message.member.hasPermission("MANAGE_MESSAGES"))
     return message.reply("Only staff members can do that!");
   const embed = new Discord.MessageEmbed()
@@ -23,7 +23,3 @@ function postFnf(message): void {
   message.channel.send("<@&789510308455907419>");
   message.delete();
 }
-
-export {};
-
-module.exports = { fnf, postFnf };
